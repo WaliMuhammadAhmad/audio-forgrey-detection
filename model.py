@@ -89,19 +89,19 @@ def analyze_audio(input_audio_path):
         if prediction[0][0] < 0.5:
             print("The input audio is real.")
         else:
-            print("The input audio is fake.")
+            print("The input audio is clone.")
     else:
         print("Error: Unable to process the input audio.")
 
 def main():
-    real_dir = r"F:\Deepfake Audio Detection\Model\real"
-    fake_dir = r"F:\Deepfake Audio Detection\Model\fake"
+    real_dir = r"dataset\real"
+    clone_dir = r"dataset\clone"
 
     X_genuine, y_genuine = create_dataset(real_dir, label=0)
-    X_deepfake, y_deepfake = create_dataset(fake_dir, label=1)
+    X_deepclone, y_deepclone = create_dataset(clone_dir, label=1)
 
-    X = X_genuine + X_deepfake
-    y = y_genuine + y_deepfake
+    X = X_genuine + X_deepclone
+    y = y_genuine + y_deepclone
 
     train_model(X, y)
 
